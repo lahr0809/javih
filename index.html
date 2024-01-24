@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+
+<head>
+    <!--https://eatmenu.vercel.app/-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javih App</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <header>
+        <div class="toggle">
+            <span></span><span></span><span></span>
+        </div>
+        <img class='icon-head' src="https://res.cloudinary.com/menudemo/image/upload/v1706131994/javih/t7fhdeiizflhcc7bqzlo.png" alt="Food app">
+        <!--<nav class="navbar-menu">
+            <a href="#">Menú</a>
+            <a href="#">Contácto</a>
+        </nav>-->
+        <div class="container-icon">
+            <div class="container-cart-icon disabled" onclick="showCart(this)">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="icon-cart">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z">
+                    </path>
+                </svg>
+                <div class="count-products">
+                    <span id="contador-productos">0</span>
+                </div>
+            </div>
+            <div class="container-cart-products">
+                <p class="cart-empty">El carrito está vacío</p>
+            </div>
+        </div>
+        <div class="cart-products" id="products-id" style="display: none;">
+            <p class="close-btn" onclick="closeBtn()">X</p>
+            <div class="card-items">
+            </div>
+            <h2>Total: <strong class="price-total">0</strong></h2>
+            <div class="obsr">
+                <div class="checkout-section">
+                    <select class="select-input" name="opcretiro" id="opcretiro" onchange="">
+                        <option value="">Seleccione opción de retiro</option>
+                        <option value="Domicilio">Llevar a domicilio</option>
+                        <option value="Retiro local">Retiro local</option>
+                    </select>
+                    <input type="text" name="txt-nombre" placeholder="Nombre" maxlength="50" Style="display:none">
+                    <input type="text" name="txt-dir" placeholder="Dirección" maxlength="80" Style="display:none">
+                    <select class="select-input" name="mediopago" id="mediopago" onchange="" Style="display:none">
+                        <option value="">Seleccione medio de pago</option>
+                        <option value="Efectivo">Efectivo</option>
+                        <option value="Tranferencia">Transferencia</option>
+                    </select>
+                    <textarea name="observaciones" id="observaciones" maxlength="170" cols="30" rows="10"
+                        placeholder="Observaciones.." Style="display:none"></textarea>
+                    <a href="javascript:verHorario()" class="hrcober">Ver cobertura y horario</a>
+                </div>
+            </div>
+            <button class="btn-pedido" onclick="sendPedido()"><svg stroke="currentColor" fill="currentColor"
+                    stroke-width="0" viewBox="0 0 448 512" class="whatsapp-icon" height="1em" width="1em"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z">
+                    </path>
+                </svg> Realizar Pedido</button>
+        </div>
+    </header>
+    <div id="container">
+        <div id="image"></div>
+        <div class="detalle">
+            <h1 style="font-size: 1.4rem;">Javi'h - Congelados y pasabocas</h1>
+            <p style="margin-bottom: 20px;">
+                🕒 08:00 a 20:00 Hs.<br>
+                📅 Lunes a domingo<br>
+                💳 Efectivo / Transferencias Bancarias<br>
+            </p>
+            <div>
+                <a href="javascript:verHorario()" style="text-decoration:none">
+                    <span class="estado" style="background: #0cce6b;padding:3px 7px;font-weight: 600;border-radius: 50px;color: #fff;">Abierto <i class="fas fa-chevron-down"></i>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="container_menu">
+        <img src="assets/images/icon-left.svg" style="width: 15px;">
+        <div class="iconos_menu">
+            <div class="icomenu active" data-name="congelados">
+                <p>Congelados</p>
+            </div>
+            <div class="icomenu" data-name="pasabocas">
+                <p>Pasabocas</p>
+            </div>
+        </div>
+        <img src="assets/images/icon-right.svg" style="width: 15px;">
+    </div>
+    <div id="loading"></div>
+    <div class="container-items">
+    </div>
+    <script>
+        function showCart(x) {
+            document.getElementById("products-id").style.display = "block";
+        }
+        function closeBtn() {
+            document.getElementById("products-id").style.display = "none";
+        }
+    </script>
+    <script src="assets/js/main.js"></script>
+    <script defer="" src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.3/sweetalert2.all.min.js"
+        integrity="sha512-/iBgV43zPirSC0tue+PT/1VHGs7En24twBmT+sVMgn9PTaOpKfbgIyL5YsGKlbAIxcwz9S8W/YEnYjpIYj2Axw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
+
+</html>
