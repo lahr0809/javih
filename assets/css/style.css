@@ -207,6 +207,7 @@ header nav {
     height:200px;
     background-repeat: no-repeat;
     background-size: cover;
+    background-color: var(--main-color);
     filter: brightness(0.6);
     color: #fff;
     padding: 17px;
