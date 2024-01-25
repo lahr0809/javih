@@ -20,7 +20,7 @@ const getData = async (endpoint, precar) => {
                 for (let i of jsonResponse) {
                     result += `<div class='item'>
                     <figure>
-                        <img src='${i.image}'/>
+                        <img data-src='${i.image}' class="lazyload"/>
                         </figure>
                     <div class='info-product'>
                         <h3>${i.plato}</h3>
@@ -46,7 +46,7 @@ const getData = async (endpoint, precar) => {
         for (let i of precar) {
             result2 += `<div class='item'>
             <figure>
-                <img src='${i.image}'/>
+                <img data-src='${i.image}' class="lazyload" />
                 </figure>
             <div class='info-product'>
                 <h3>${i.plato}</h3>
