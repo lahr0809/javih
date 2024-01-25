@@ -292,7 +292,7 @@ slcretiro.addEventListener("change", () => {
 const verEstado = () => {
     const iestado = document.querySelector('.estado');
     let date = new Date();
-    if (date.getHours() < 11 || date.getHours() > 22) {
+    if (date.getHours() < 8 || date.getHours() > 20) {
         iestado.innerHTML = `Cerrado <i class='fas fa-chevron-down'></i>`;
         iestado.style.background = '#ff2222';
     }
