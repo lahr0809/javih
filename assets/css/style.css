@@ -11,7 +11,7 @@
     box-sizing: border-box;
 }
 body{
-    background-color: var(--se);
+    background-color: var(--second-color);
 }
 header {
     align-items: center;
