@@ -1,6 +1,6 @@
 :root {
     --main-color: #4E0800;
-    --second-color: #FFFAC0;
+    --second-color: #f4d876;
     --yellow-color: #dda022;
 }
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
@@ -11,7 +11,7 @@
     box-sizing: border-box;
 }
 body{
-    background-color: var(--second-color);
+    background-color: var(--se);
 }
 header {
     align-items: center;
