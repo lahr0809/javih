@@ -18,19 +18,16 @@ const getData = async (endpoint, precar) => {
                 }
 
                 for (let i of jsonResponse) {
-                    result += `<div class='item'>
-                    <figure>
-                        <img data-src='${i.image}' class="lazyload"/>
-                        </figure>
-                    <div class='info-product'>
-                        <h3>${i.plato}</h3>
-                        <p class='ellipsis'>${i.descripcion}</p>
-                        <div class='info-container'>
+                    result += `<div class='cont-prod'>
+                    <div style="background-image: url('${i.image}');background-size:cover;width:134px;    background-repeat: no-repeat;"></div>
+                        <div class='detail'>
+                            <h3>${i.plato}</h3>
+                            <p>${i.descripcion}</p>
                             <p class='price' data-price='${i.valor}'>${formatterPeso.format(i.valor)}</p>
+                            <a href data-id='${i.id}' class="btn-add-cart">Agregar</a></a>
                         </div>
-                        <a href data-id='${i.id}' class='btn-add-cart'>Añadir al carrito</a>
-                    </div>
-                </div>`;
+                      
+                    </div>`;
                     // console.log(i.plato);
                 }
                 document.querySelector('.container-items').innerHTML = result;
@@ -44,19 +41,16 @@ const getData = async (endpoint, precar) => {
         document.querySelector('.container-items').innerHTML = '';
         let result2 = '';
         for (let i of precar) {
-            result2 += `<div class='item'>
-            <figure>
-                <img data-src='${i.image}' class="lazyload" />
-                </figure>
-            <div class='info-product'>
-                <h3>${i.plato}</h3>
-                <p class='ellipsis'>${i.descripcion}</p>
-                <div class='info-container'>
+            result2 += `<div class='cont-prod'>
+            <div style="background-image: url('${i.image}');background-size:cover;width:134px;    background-repeat: no-repeat;"></div>
+                <div class='detail'>
+                    <h3>${i.plato}</h3>
+                    <p>${i.descripcion}</p>
                     <p class='price' data-price='${i.valor}'>${formatterPeso.format(i.valor)}</p>
+                    <a href data-id='${i.id}' class="btn-add-cart">Agregar</a></a>
                 </div>
-                <a href data-id='${i.id}' class='btn-add-cart'>Añadir al carrito</a>
-            </div>
-        </div>`;
+              
+            </div>`;
         }
         document.querySelector('.container-items').innerHTML = result2;
     }
